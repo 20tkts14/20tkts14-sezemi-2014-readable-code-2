@@ -3,7 +3,7 @@
 #include <string.h>
 
 //レシピデータのディレクトリパス
-const char *RECIPEDATAPATH  = "./recipe-data/";
+const char *RECIPEDATAPATH ="./recipe-data/";
 
 int main(int argc, char const *argv[])
 {
@@ -12,7 +12,7 @@ int main(int argc, char const *argv[])
 	FILE *recipeFile;
 
 	strcpy(fileName,RECIPEDATAPATH);
-	strcat(fileName,argv[1]);　
+	strcat(fileName,argv[1]);
 
 
 	char recipe[20];
@@ -25,9 +25,9 @@ int main(int argc, char const *argv[])
 
 
 	while (fgets(recipe, 20, recipeFile)){
-		printf("%s\n",recipe);
+		printf("%s",recipe);
 	}
-
+	
 
 	fclose(recipeFile);
 	return 0;
