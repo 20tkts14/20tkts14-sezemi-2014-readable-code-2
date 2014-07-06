@@ -2,20 +2,23 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define MAXREADBYTE 256 //読み込み可能な文字数
+#define MAXWORDS 10 //読み込み可能な単語数
+
 //レシピデータのディレクトリパス
 const char *RECIPEDATAPATH ="./recipe-data/";
+
 
 int main(int argc, char const *argv[])
 {
 	
-	char fileName[30];
+	char fileName[MAXREADBYTE];
 	FILE *recipeFile;
 
 	strcpy(fileName,RECIPEDATAPATH);
 	strcat(fileName,argv[1]);
 
-
-	char recipe[20];
+	char recipe[MAXWORDS][MAXREADBYTE]; //レシピ名を読み込む配列
 
 	//エラーの場合は異常終了
 	if((recipeFile = fopen(fileName,"r")) == NULL){
@@ -24,10 +27,12 @@ int main(int argc, char const *argv[])
 	}
 
 
-	while (fgets(recipe, 20, recipeFile)){
-		printf("%s",recipe);
+	int i = 0;
+	while (fgets(recipe[i], MAXREADBYTE, recipeFile)){
+		printf("%d:%s",(i + 1),recipe[i]);
+		i++;
 	}
-	
+
 
 	fclose(recipeFile);
 	return 0;
